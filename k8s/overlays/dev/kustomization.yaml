@@ -9,5 +9,5 @@ resources:
 - ../../base
 images:
 - name: demo-app
-  newName: 
-  newTag: 
+  newName: rabindra01/react_web
+  newTag: demo
