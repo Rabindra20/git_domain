@@ -34,13 +34,13 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
         
-      - name: Build and 
-        if: contains(github.ref,'main')
-        id: build-image
-        run: |
-          docker build -t ${{ secrets.DOCKER_HUB_USERNAME }}/$REPOSITORY:dev .
-          docker push ${{ secrets.DOCKER_HUB_USERNAME }}/$REPOSITORY:dev
-          echo "::set-output name=image::${{ secrets.DOCKER_HUB_USERNAME }}/$REPOSITORY:dev"
+      # - name: Build and 
+      #   if: contains(github.ref,'main')
+      #   id: build-image
+      #   run: |
+      #     docker build -t ${{ secrets.DOCKER_HUB_USERNAME }}/$REPOSITORY:dev .
+      #     docker push ${{ secrets.DOCKER_HUB_USERNAME }}/$REPOSITORY:dev
+      #     echo "::set-output name=image::${{ secrets.DOCKER_HUB_USERNAME }}/$REPOSITORY:dev"
        # uses: docker/build-push-action@v2
       #  with:
       #    context: .
@@ -48,15 +48,14 @@ jobs:
       #    push: true
       #    tags: ${{ secrets.DOCKER_HUB_USERNAME }}/react_web:latest
 
-      # - name: Build and 
-      #   id: build-image
-      #  # uses: docker/build-push-action@v2
-      #   env: 
-      #    IMAGE_TAG: fe-${{ github.sha }}
-      #   run: |
-      #     docker build -t ${{ secrets.DOCKER_HUB_USERNAME }}/$REPOSITORY:$IMAGE_TAG .
-      #     docker push ${{ secrets.DOCKER_HUB_USERNAME }}/$REPOSITORY:$IMAGE_TAG
-      #     echo "::set-output name=image::${{ secrets.DOCKER_HUB_USERNAME }}/$REPOSITORY:$IMAGE_TAG"
+      - name: Build and 
+        id: build-image
+        env: 
+         IMAGE_TAG: fe-${{ github.sha }}
+        run: |
+          docker build -t ${{ secrets.DOCKER_HUB_USERNAME }}/$REPOSITORY:$IMAGE_TAG .
+          docker push ${{ secrets.DOCKER_HUB_USERNAME }}/$REPOSITORY:$IMAGE_TAG
+          echo "::set-output name=image::${{ secrets.DOCKER_HUB_USERNAME }}/$REPOSITORY:$IMAGE_TAG"
           
       - name: Setup Kustomize
         id: setup-kustomize
