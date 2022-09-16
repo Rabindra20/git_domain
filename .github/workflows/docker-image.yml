@@ -51,7 +51,7 @@ jobs:
       - name: Build and 
         id: build-image
         env: 
-         IMAGE_TAG: fe-${{ github.sha }}
+         IMAGE_TAG: fe-dev
         run: |
           docker build -t ${{ secrets.DOCKER_HUB_USERNAME }}/$REPOSITORY:$IMAGE_TAG .
           docker push ${{ secrets.DOCKER_HUB_USERNAME }}/$REPOSITORY:$IMAGE_TAG
