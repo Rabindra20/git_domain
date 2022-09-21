@@ -4,7 +4,7 @@ namePrefix: demo-
 commonLabels:
   app: demo-app
   release: demo
-namespace: demo
+namespace: default
 resources:
 - ../../base
 images:
