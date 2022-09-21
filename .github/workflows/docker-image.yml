@@ -66,6 +66,7 @@ jobs:
         env:
           IMAGE_NAME: ${{ steps.build-image.outputs.image }}
         run: |
+          git fetch
           git checkout cicd
           cd k8s/overlays/dev && kustomize edit set image demo-app=${IMAGE_NAME} && cd -
           git add k8s/overlays/dev/kustomization.yaml
