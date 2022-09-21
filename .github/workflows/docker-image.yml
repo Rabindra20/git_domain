@@ -1,4 +1,4 @@
-name: Build/Push Frontend Image - Dev
+name: Build/Push Image
 
 on:
   push:
