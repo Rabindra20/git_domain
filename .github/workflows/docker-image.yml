@@ -70,4 +70,4 @@ jobs:
           cd k8s/overlays/dev && kustomize edit set image demo-app=${IMAGE_NAME} && cd -
           git add k8s/overlays/dev/kustomization.yaml
           git commit -m "[ci/cd] change image name."
-          git push origin main
+          git push origin cicd
