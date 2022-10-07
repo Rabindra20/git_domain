@@ -16,7 +16,7 @@ jobs:
     - name: Push Changes to Github
       id: pull-changes
       run: |
-        git pull origin HEAD
+           git fetch
 #       with:
 #         submodules: recursive
 #     - name: Set up QEMU
