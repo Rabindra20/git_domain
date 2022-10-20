@@ -1,28 +1,43 @@
 name: pr
 on:
   pull_request:
-    types:
-      - opened
-    branches:
-      - main
-    # paths:
-    #   - '**.js'
+    types: [opened, closed, reopened]
+
 jobs:
-  build:
+  printJob:    
+    name: Print event
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout
-      uses: actions/checkout@v2
-    - name: Push Changes to Github
-      id: push-changes
-      run: |
-        git fetch
-        
     - name: Dump GitHub context
       env:
         GITHUB_CONTEXT: ${{ toJson(github) }}
       run: |
         echo "$GITHUB_CONTEXT"
+# name: pr
+# on:
+#   pull_request:
+#     types:
+#       - opened
+#     branches:
+#       - main
+#     # paths:
+#     #   - '**.js'
+# jobs:
+#   build:
+#     runs-on: ubuntu-latest
+#     steps:
+#     - name: Checkout
+#       uses: actions/checkout@v2
+#     - name: Push Changes to Github
+#       id: push-changes
+#       run: |
+#         git fetch
+        
+#     - name: Dump GitHub context
+#       env:
+#         GITHUB_CONTEXT: ${{ toJson(github) }}
+#       run: |
+#         echo "$GITHUB_CONTEXT"
 
 #       with:
 #         submodules: recursive
