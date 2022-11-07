@@ -1,53 +1,22 @@
 name: pr
 on:
   pull_request:
-    types: [opened, closed, reopened]
-
+    types:
+      - opened
+    branches:
+      - main
+    # paths:
+    #   - '**.js'
 jobs:
-  printJob:    
-    name: Print event
+  build:
     runs-on: ubuntu-latest
     steps:
-<<<<<<< HEAD
     - name: Checkout
       uses: actions/checkout@v2
     - name: Push Changes to Github
-      id: pull-changes
+      id: push-changes
       run: |
-           git fetch
-=======
-    - name: Dump GitHub context
-      env:
-        GITHUB_CONTEXT: ${{ toJson(github) }}
-      run: |
-        echo "$GITHUB_CONTEXT"
-# name: pr
-# on:
-#   pull_request:
-#     types:
-#       - opened
-#     branches:
-#       - main
-#     # paths:
-#     #   - '**.js'
-# jobs:
-#   build:
-#     runs-on: ubuntu-latest
-#     steps:
-#     - name: Checkout
-#       uses: actions/checkout@v2
-#     - name: Push Changes to Github
-#       id: push-changes
-#       run: |
-#         git fetch
-        
-#     - name: Dump GitHub context
-#       env:
-#         GITHUB_CONTEXT: ${{ toJson(github) }}
-#       run: |
-#         echo "$GITHUB_CONTEXT"
-
->>>>>>> 952d2bd83083698c4a7efc0c32cd873bc3c09411
+        git fetch
 #       with:
 #         submodules: recursive
 #     - name: Set up QEMU

@@ -20,6 +20,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
+      - name: Dump GitHub context
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: |
+          echo "$GITHUB_CONTEXT"
       # - name: Install dependenciess
       #   run: yarn
       # - name: Test and coverage
