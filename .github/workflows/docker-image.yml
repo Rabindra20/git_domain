@@ -25,16 +25,19 @@ jobs:
           GITHUB_CONTEXT: ${{ toJson(github) }}
         run: |
           echo "$GITHUB_CONTEXT"
-      - name: Install dependenciess
-        run: yarn
-      - name: Test and coverage
-        run: yarn test
+      # - name: Install dependenciess
+      #   run: yarn
+      # - name: Test and coverage
+      #   run: yarn test
       - name: SonarQube Scan
-        uses: SonarSource/sonarqube-scan-action@master
+        uses: sonarsource/sonarqube-scan-action@master
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
-
+      # - uses: sonarsource/sonarqube-quality-gate-action@master
+      #   timeout-minutes: 5
+      #   env:
+      #     SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       - name: Analyze with SonarCloud
         uses: sonarsource/sonarcloud-github-action@v1.3
         env:
