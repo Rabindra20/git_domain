@@ -17,6 +17,15 @@ function add(numbers) {
   
   return result;
 }
+const greet = (firstName, lastName, greeting) => {
+  if (typeof firstName === 'string') {
+    if (typeof lastName === 'string') {
+      if (typeof greeting === 'string') {
+        return `${greeting}, ${firstName}${lastName}`;
+      }
+    }
+  }
+}
 function App() {
   return (
     <div className="App">
