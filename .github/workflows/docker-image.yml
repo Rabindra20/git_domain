@@ -25,10 +25,10 @@ jobs:
           GITHUB_CONTEXT: ${{ toJson(github) }}
         run: |
           echo "$GITHUB_CONTEXT"
-      # - name: Install dependenciess
-      #   run: yarn
-      # - name: Test and coverage
-      #   run: yarn test
+      - name: Install dependenciess
+        run: yarn
+      - name: Test and coverage
+        run: yarn test
       - name: SonarQube Scan
         uses: SonarSource/sonarqube-scan-action@master
         env:
