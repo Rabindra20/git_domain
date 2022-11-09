@@ -18,14 +18,26 @@ function add(numbers) {
   return result;
 }
 
+// const greet = (firstName, lastName, greeting) => {
+//   if (typeof firstName === 'string') {
+//     if (typeof lastName === 'string') {
+//       if (typeof greeting === 'string') {
+//         return `${greeting}, ${firstName}${lastName}`;
+//       }
+//     }
+//   }
+// }
 const greet = (firstName, lastName, greeting) => {
-  if (typeof firstName === 'string') {
-    if (typeof lastName === 'string') {
-      if (typeof greeting === 'string') {
-        return `${greeting}, ${firstName}${lastName}`;
-      }
-    }
+  if (typeof firstName !== 'string') {
+    throw new Error('first name is required');
   }
+  if (typeof lastName !== 'string') {
+    throw new Error('last name is required');
+  }
+  if (typeof greeting !== 'string') {
+    throw new Error('greeting is required');
+  }
+  return `${greeting}, ${firstName}${lastName}`;
 }
 function App() {
   return (
