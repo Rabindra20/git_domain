@@ -1,0 +1,37 @@
+---
+version: 2
+jobs:
+  deploy:
+    docker:
+      - image: node:16
+    steps:
+      - checkout
+      - run:
+          name: Setup Stage
+          command: |
+            if [ $CIRCLE_BRANCH == "main" ] || [ $CIRCLE_BRANCH == "test1" ]
+            then
+              echo 'export STAGE=dev' >> ~/.bashrc
+            elif [ $CIRCLE_BRANCH == "master" ]
+            then
+              echo 'export STAGE=production' >> ~/.bashrc
+            else
+              echo "Undefined stage"
+            fi
+      - run:
+          name: yarn start
+          command: |
+            source ~/.bashrc;
+            yarn;
+            yarn build
+workflows:
+  version: 2
+  deploy_api:
+    jobs:
+      - deploy:
+          filters:
+            branches:
+              only:
+                - main
+
+
