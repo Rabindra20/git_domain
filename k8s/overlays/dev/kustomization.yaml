@@ -10,4 +10,4 @@ resources:
 images:
 - name: demo-app
   newName: rabindra01/react_web
-  newTag: fe-69a9b89939c55db7e9ab91f24ac6a1ac12d729ea
+  newTag: fe-3466594af412f172cdea7e5e4256bad80c3a0673
