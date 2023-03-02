@@ -13,7 +13,7 @@ env:
   # STAGE: |
   #      if [ ${{ github.ref }} != 'refs/heads/testenv' ]; then echo "testenv"; elif [ $GITHUB_BASE_REF == 'main' ]; then echo "main"; else echo "Undefined"; fi;)
   # STAGE: ${{ github.ref }}
-       STAGE: ${{ github.event.inputs.testenv }}"
+  STAGE: ${{ github.event.inputs.testenv }}"
         echo "STAGE=${STAGE}" >> $GITHUB_ENV  
 jobs:
   deploy:
