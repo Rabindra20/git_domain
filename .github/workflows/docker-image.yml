@@ -10,18 +10,10 @@ on:
 env:
   REPOSITORY: react_web
   permissions: write-all
-  TEST: ${{ secrets.TEST }}
-  if: env.TEST != null
-  # STAGE: |
-  #      if [ ${{ github.ref }} != 'refs/heads/testenv' ]; then echo "testenv"; elif [ $GITHUB_BASE_REF == 'main' ]; then echo "main"; else echo "Undefined"; fi;)
-  # STAGE: ${{ github.ref }}
 jobs:
   deploy:
     name: Deploy
     runs-on: ubuntu-latest
-    # if: contains(github.ref,'testenv')
-    # environment: testenv
-    # checking secrets
     
     environment: ${{ github.ref_name }}
 
@@ -29,6 +21,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
+      - name: Assign variable
+        id: secret
+        run: echo '::set-output name=secret::${{secrets.SECRET}}'
+
+      - name: Encode the project the project
+        if: steps.secret.outputs.secret
+        
       - name: Dump GitHub context
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
