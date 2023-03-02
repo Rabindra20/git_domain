@@ -10,8 +10,8 @@ on:
 env:
   REPOSITORY: react_web
   permissions: write-all
-  MY_SECRET: ${{ secrets.TEST }}
-  
+  TEST: ${{ secrets.TEST }}
+  if: ${{ env.TEST != 0 }}
   # STAGE: |
   #      if [ ${{ github.ref }} != 'refs/heads/testenv' ]; then echo "testenv"; elif [ $GITHUB_BASE_REF == 'main' ]; then echo "main"; else echo "Undefined"; fi;)
   # STAGE: ${{ github.ref }}
@@ -22,7 +22,7 @@ jobs:
     # if: contains(github.ref,'testenv')
     # environment: testenv
     # checking secrets
-    if: ${{ env.TEST != 0 }}
+    
     environment: ${{ github.ref_name }}
 
     steps:
