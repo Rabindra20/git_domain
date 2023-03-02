@@ -10,7 +10,7 @@ on:
 env:
   REPOSITORY: react_web
   permissions: write-all
-  # STAGE: $(if [ ${{ github.ref }} != 'refs/heads/main' ]; then echo "testenv"; elif [ $GITHUB_BASE_REF == 'main' ]; then echo "main"; else echo "Undefined"; fi;)
+  # STAGE: $(if [ ${{ github.ref }} != 'refs/heads/testenv' ]; then echo "testenv"; elif [ $GITHUB_BASE_REF == 'main' ]; then echo "main"; else echo "Undefined"; fi;)
   # STAGE: ${{ github.ref }}
 jobs:
   deploy:
@@ -18,7 +18,7 @@ jobs:
     runs-on: ubuntu-latest
     # outputs:
     environment: |
-          if [ ${{ github.ref }} != 'refs/heads/main' ]; then
+          if [ ${{ github.ref }} != 'refs/heads/testenv' ]; then
             echo "IS NOT main branch"
             echo "test=abc" >> $GITHUB_ENV
             echo "::set-output name=test::abc"
