@@ -103,7 +103,7 @@ jobs:
           git commit -m "[ci/cd] change image name."
           git push origin cicd
 
-  deploy:
+  deployhjh:
     name: Deploy
     runs-on: ubuntu-latest
     if: contains(github.ref,'main')
