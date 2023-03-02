@@ -31,8 +31,7 @@ jobs:
           GITHUB_CONTEXT: ${{ toJson(github) }}
         run: |
           echo "$GITHUB_CONTEXT"
-          echo ${{ env.TEST }}
-          echo ${{ secrets.FHFH }}
+          echo ${{ secrets.TEST }}
       # - name: Install dependenciess
       #   run: yarn
       # - name: Test and coverage
