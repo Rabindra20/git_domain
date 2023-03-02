@@ -10,13 +10,14 @@ on:
 env:
   REPOSITORY: react_web
   permissions: write-all
-  GITHUB_ENV: $(if [ $GITHUB_BASE_REF == 'testenv' ]; then echo "dev"; elif [ $GITHUB_BASE_REF == 'main' ]; then echo "main"; else echo "Undefined"; fi;)
+  STAGE: $(if [ $GITHUB_BASE_REF == 'testenv' ]; then echo "dev"; elif [ $GITHUB_BASE_REF == 'main' ]; then echo "main"; else echo "Undefined"; fi;)
 
 jobs:
   deploy:
     name: Deploy
     runs-on: ubuntu-latest
-    environment: $GITHUB_ENV
+    outputs:
+      environment: ${{ env.STAGE }}
 
     steps:
       - name: Checkout
