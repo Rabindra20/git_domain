@@ -17,17 +17,17 @@ jobs:
     name: Deploy
     runs-on: ubuntu-latest
     # outputs:
-    environment: |
-          if [ ${{ github.ref }} != 'refs/heads/testenv' ]; then
-            echo "IS NOT main branch"
-            echo "test=abc" >> $GITHUB_ENV
-            echo "::set-output name=test::abc"
-          else
-            echo "IS main branch"
-            echo "test=123" >> $GITHUB_ENV
-            echo "::set-output name=test::123"
-          fi
-    # environment: testenv
+    environment:
+          # if [ ${{ github.ref }} != 'refs/heads/testenv' ]; then
+          #   echo "IS NOT main branch"
+          #   echo "test=abc" >> $GITHUB_ENV
+          #   echo "::set-output name=test::abc"
+          # else
+          #   echo "IS main branch"
+          #   echo "test=123" >> $GITHUB_ENV
+          #   echo "::set-output name=test::123"
+          # fi
+    environment: testenv
     # if: contains(github.ref,'testenv')
     # environment: ${{ vars.ENVIRONMENT_STAGE }}
 
