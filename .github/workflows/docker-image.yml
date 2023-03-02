@@ -16,9 +16,9 @@ jobs:
   deploy:
     name: Deploy
     runs-on: ubuntu-latest
-    # outputs:
-    #   environment: ${{ env.STAGE }}
-    environment: testenv
+    outputs:
+      environment: ${{ env.STAGE }}
+    # environment: testenv
     # if: contains(github.ref,'testenv')
     # environment: ${{ github.ref }}
 
