@@ -57,7 +57,7 @@ jobs:
         run: |
           git config user.name "GitHub Actions Bot"
           git config user.email "<>"
-          echo "${{ env.STAGE }}"
+          echo "${{ env.GITHUB_ENV }}"
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
         
