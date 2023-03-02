@@ -5,16 +5,18 @@ on:
   # pull_request:
     branches:
       - "main"
+      - testenv
 
 env:
   REPOSITORY: react_web
-permissions: write-all
+  permissions: write-all
+  STAGE: $(if [ $GITHUB_BASE_REF == 'testenv' ]; then echo "dev"; elif [ $GITHUB_BASE_REF == 'main' ]; then echo "main"; else echo "Undefined"; fi;)
 
 jobs:
   deploy:
     name: Deploy
     runs-on: ubuntu-latest
-    environment: production
+    environment: $STAGE
 
     steps:
       - name: Checkout
@@ -30,11 +32,14 @@ jobs:
       # - name: Test and coverage
       #   run: yarn test
       # - name: SonarQube Scan
-      #   uses: SonarSource/sonarqube-scan-action@master
+      #   uses: sonarsource/sonarqube-scan-action@master
       #   env:
       #     SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       #     SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
-
+      # - uses: sonarsource/sonarqube-quality-gate-action@master
+      #   timeout-minutes: 5
+      #   env:
+      #     SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       # - name: Analyze with SonarCloud
       #   uses: sonarsource/sonarcloud-github-action@v1.3
       #   env:
