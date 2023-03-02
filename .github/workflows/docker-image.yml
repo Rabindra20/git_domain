@@ -5,16 +5,18 @@ on:
   # pull_request:
     branches:
       - "main"
+      - testenv
 
 env:
   REPOSITORY: react_web
-permissions: write-all
+  permissions: write-all
+  STAGE: $(if [ $GITHUB_BASE_REF == 'testenv' ]; then echo "dev"; elif [ $GITHUB_BASE_REF == 'main' ]; then echo "main"; else echo "Undefined"; fi;)
 
 jobs:
   deploy:
     name: Deploy
     runs-on: ubuntu-latest
-    environment: production
+    environment: $STAGE
 
     steps:
       - name: Checkout
