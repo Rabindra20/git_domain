@@ -10,17 +10,17 @@ on:
 env:
   REPOSITORY: react_web
   permissions: write-all
-  # STAGE: $(if [ $GITHUB_BASE_REF == 'testenv'  ]; then echo "testenv"; elif [ $GITHUB_BASE_REF == 'main' ]; then echo "main"; else echo "Undefined"; fi;)
-  STAGE: ${{ github.ref }}
+  STAGE: $(if [ ${{ github.ref }} != 'refs/heads/main' ]; then echo "testenv"; elif [ $GITHUB_BASE_REF == 'main' ]; then echo "main"; else echo "Undefined"; fi;)
+  # STAGE: ${{ github.ref }}
 jobs:
   deploy:
     name: Deploy
     runs-on: ubuntu-latest
     # outputs:
-      # environment: ${{ env.STAGE }}
+    environment: $STAGE
     # environment: testenv
     # if: contains(github.ref,'testenv')
-    environment: ${{ github.ref }}
+    # environment: ${{ vars.ENVIRONMENT_STAGE }}
 
     steps:
       - name: Checkout
