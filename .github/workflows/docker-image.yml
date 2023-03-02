@@ -25,10 +25,8 @@ jobs:
         id: secret
         run: echo '::set-output name=secret::${{secrets.SECRET}}'
 
-      - name: Encode the project the project
-        if: steps.secret.outputs.secret
-        
       - name: Dump GitHub context
+        if: steps.secret.outputs.secret
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
         run: |
