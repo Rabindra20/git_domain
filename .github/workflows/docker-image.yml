@@ -17,7 +17,7 @@ jobs:
     name: Deploy
     runs-on: ubuntu-latest
     # outputs:
-    environment:
+    # environment:
           # if [ ${{ github.ref }} != 'refs/heads/testenv' ]; then
           #   echo "IS NOT main branch"
           #   echo "test=abc" >> $GITHUB_ENV
