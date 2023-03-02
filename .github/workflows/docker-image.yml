@@ -20,8 +20,8 @@ jobs:
     # if: contains(github.ref,'testenv')
     # environment: testenv
     environment: 
-        STAGE: $(if [ ${{ github.ref }} != 'refs/heads/testenv' ]; then echo "testenv"; then echo 'production'; else echo "Undefined"; fi;)
-
+       STAGE="${{ github.event.inputs.testenv }}"
+       echo "STAGE=${STAGE}" >> $GITHUB_ENV  
 
     steps:
       - name: Checkout
