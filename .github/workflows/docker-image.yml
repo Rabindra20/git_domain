@@ -17,9 +17,11 @@ jobs:
   deploy:
     name: Deploy
     runs-on: ubuntu-latest
-    if: contains(github.ref,'testenv')
-    environment: testenv
-    # environment: ${{ vars.ENVIRONMENT_STAGE }}
+    # if: contains(github.ref,'testenv')
+    # environment: testenv
+    environment: 
+        STAGE: $(if [ ${{ github.ref }} != 'refs/heads/testenv' ]; then echo "testenv"; then echo 'production'; else echo "Undefined"; fi;)
+
 
     steps:
       - name: Checkout
