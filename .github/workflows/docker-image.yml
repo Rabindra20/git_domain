@@ -16,7 +16,7 @@ env:
 jobs:
   deploy:
     name: Deploy
-    if: ${{ github.ref_name }} == "testenv"
+    if: github.ref_name == 'testenv'
     runs-on: ubuntu-latest
     # if: contains(github.ref,'testenv')
     # environment: testenv
