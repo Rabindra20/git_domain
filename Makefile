@@ -7,7 +7,7 @@ export SHELL := /bin/bash # Required for OS X for some reason
 top:
 	npm -l
 APP_ROOT ?= $(shell 'pwd')
-K8S ?= $(APP_ROOT)/k8s
+# K8S ?= $(APP_ROOT)/k8s
 BRANCH := $(shell git for-each-ref --format='%(objectname) %(refname:short)' refs/heads | awk "/^$$(git rev-parse HEAD)/ {print \$$2}")
 HASH := $(shell git rev-parse HEAD)
 # all: yarn yarn_build docker-build
