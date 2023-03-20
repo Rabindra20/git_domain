@@ -28,10 +28,10 @@ jobs:
       
       - name: check stage
         run: |
-            if [ github.ref_name == "main" ]
+            if [ $GITHUB_REF_NAME == "main" ]
             then
               echo 'export STAGE=dev' >> ~/.bashrc
-            elif [ github.ref_name == "testenv" ]
+            elif [ $GITHUB_REF_NAME == "testenv" ]
             then
               echo 'export STAGE=test' >> ~/.bashrc
             else
