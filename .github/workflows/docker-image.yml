@@ -25,6 +25,18 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+      
+      - name: check stage
+        run: |
+            if [ github.ref_name == "main" ]
+            then
+              echo 'export STAGE=dev' >> ~/.bashrc
+            elif [ github.ref_name == "testenv" ]
+            then
+              echo 'export STAGE=test' >> ~/.bashrc
+            else
+              echo "Undefined stage"
+            fi 
 
       - name: Dump GitHub context
         env:
@@ -32,6 +44,7 @@ jobs:
         run: |
           echo "$GITHUB_CONTEXT"
           echo ${{ secrets.TEST }}
+          echo $STAGE
       # - name: Install dependenciess
       #   run: yarn
       # - name: Test and coverage
