@@ -27,13 +27,19 @@ jobs:
         uses: actions/checkout@v2
       
       - name: check stage
+        shell: bash
         run: |
-            if [ $GITHUB_REF_NAME == "main" ]
-            then
-              echo 'export STAGE=dev' >> ~/.bashrc
-            elif [ $GITHUB_REF_NAME == "testenv" ]
-            then
-              echo 'export STAGE=test' >> ~/.bashrc
+          sudo apt -y update || true
+          if [ $GITHUB_REF_NAME == "testenv" ]
+          then
+            echo "export STAGE=test" >> ~/.bash_profile
+          elif [ $GITHUB_REF_NAME == "staging" ]
+            # if [ $GITHUB_REF_NAME == "main" ]
+            # then
+            #   echo 'export STAGE=dev' >> ~/.bashrc
+            # elif [ $GITHUB_REF_NAME == "testenv" ]
+            # then
+            #   echo 'export STAGE=test' >> ~/.bashrc
             else
               echo "Undefined stage"
             fi 
@@ -44,6 +50,7 @@ jobs:
         run: |
           echo "$GITHUB_CONTEXT"
           echo ${{ secrets.TEST }}
+          source ~/.bash_profile
           echo $STAGE
       # - name: Install dependenciess
       #   run: yarn
