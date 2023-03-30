@@ -35,7 +35,7 @@ jobs:
             echo "export STAGE=test" >> ~/.bash_profile
           elif [ $GITHUB_REF_NAME == "main" ]
           then
-            echo 'export STAGE=dev' >> ~/.bashrc
+            echo 'export STAGE=dev' >> ~/.bash_profile
             else
               echo "Undefined stage"
             fi 
@@ -47,7 +47,7 @@ jobs:
           echo "$GITHUB_CONTEXT"
           echo ${{ secrets.TEST }}
           source ~/.bash_profile || source ~/.bashrc
-          echo $STAGE
+          echo "$STAGE"
       # - name: Install dependenciess
       #   run: yarn
       # - name: Test and coverage
