@@ -1,4 +1,5 @@
-name: workflow_02
+#Add in below code in another repo workflow
+name: trigger
 on: [repository_dispatch]
 jobs:
   cypress-run:
