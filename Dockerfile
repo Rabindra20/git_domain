@@ -23,6 +23,6 @@ CMD [ "npm" , "start" ]
 #         chown -R nginx:nginx /etc/nginx/conf.d && touch /var/run/nginx.pid && \
 #         chown -R nginx:nginx /var/run/nginx.pid 
 
-# EXPOSE 8080
+# EXPOSE 80
 # USER nginx
 # CMD [ "/bin/bash", "-c", "nginx -g 'daemon off;'" ]
