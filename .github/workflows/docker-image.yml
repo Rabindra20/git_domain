@@ -33,7 +33,7 @@ jobs:
           then
             echo "TAG=${ECR_BASE_URL}/${ECR_REPO_NAME}:${BUILD_ID}_${BUILD_NUM}" >> $GITHUB_OUTPUT
           else
-            echo ${{ github.ref_name }} >> $GITHUB_OUTPUT
+            echo "TAG=${{ github.ref_name }}" >> $GITHUB_OUTPUT
           fi
           echo "BRANCH=$(echo ${GITHUB_REF#refs/heads/})" >> $GITHUB_OUTPUT
       
