@@ -29,12 +29,8 @@ jobs:
         run: |
           BUILD_NUM=$(echo $GITHUB_RUN_NUMBER)
           BUILD_ID=$(echo $GITHUB_SHA | head -c7)
-          if [ $GITHUB_REF_NAME == "main" ]
-          then
+
             echo "TAG=${ECR_BASE_URL}/${ECR_REPO_NAME}:${BUILD_ID}_${BUILD_NUM}" >> $GITHUB_OUTPUT
-          else
-            echo "TAG=${{ github.ref_name }}" >> $GITHUB_OUTPUT
-          fi
           echo "BRANCH=$(echo ${GITHUB_REF#refs/heads/})" >> $GITHUB_OUTPUT
       
       - name: check stage
