@@ -26,8 +26,7 @@ jobs:
       - name: check stage
         shell: bash
         run: |
-          sudo apt -y update || true
-          if [ $GITHUB_REF_NAME == "testenv" ]
+         if [ $GITHUB_REF_NAME == "testenv" ]
           then
             echo "export STAGE=test" >> ~/.bash_profile
           elif [ $GITHUB_REF_NAME == "main" ]
