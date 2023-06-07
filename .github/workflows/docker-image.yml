@@ -23,20 +23,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-
-      - name: Set Vars
-        id: set_vars
-        run: |
-          BUILD_NUM=$(echo $GITHUB_RUN_NUMBER)
-          BUILD_ID=$(echo $GITHUB_SHA | head -c7)
-          if [ $GITHUB_REF_NAME == "main" ]
-          then
-            echo "TAG=${ECR_BASE_URL}/${ECR_REPO_NAME}:${BUILD_ID}_${BUILD_NUM}" >> $GITHUB_OUTPUT
-          else
-            echo "TAG=${{ github.ref_name }}" >> $GITHUB_OUTPUT
-          fi
-          echo "BRANCH=$(echo ${GITHUB_REF#refs/heads/})" >> $GITHUB_OUTPUT
-      
       - name: check stage
         shell: bash
         run: |
@@ -50,6 +36,19 @@ jobs:
             else
               echo "Undefined stage"
             fi 
+      - name: Set Vars
+        id: set_vars
+        run: |
+          BUILD_NUM=$(echo $GITHUB_RUN_NUMBER)
+          BUILD_ID=$(echo $GITHUB_SHA | head -c7)
+          if [ $GITHUB_REF_NAME == "main" ]
+          then
+            echo "TAG=${ECR_BASE_URL}/${ECR_REPO_NAME}:${BUILD_ID}_${BUILD_NUM}" >> $GITHUB_OUTPUT
+          else
+            echo "TAG=${{ github.ref_name }}" >> $GITHUB_OUTPUT
+          fi
+          echo "BRANCH=$(echo ${GITHUB_REF#refs/heads/})" >> $GITHUB_OUTPUT
+          source ~/.bash_profile && echo "STAGE=$STAGE" >>$GITHUB_OUTPUT
 
       - name: Dump GitHub context
         env:
@@ -59,6 +58,7 @@ jobs:
           echo ${{ secrets.TEST }}
           source ~/.bash_profile || source ~/.bashrc
           echo "$STAGE"
+          echo ${{ steps.set_vars.outputs.STAGE }}
           echo ${{ steps.set_vars.outputs.TAG }}
       # - name: Install dependenciess
       #   run: yarn
