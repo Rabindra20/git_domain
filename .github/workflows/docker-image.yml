@@ -57,7 +57,7 @@ jobs:
           echo "$GITHUB_CONTEXT"
           echo ${{ secrets.TEST }}
           source ~/.bash_profile || source ~/.bashrc
-          echo "$STAGE"
+          echo $STAGE
           echo ${{ steps.set_vars.outputs.STAGE }}
           echo ${{ steps.set_vars.outputs.TAG }}
       # - name: Install dependenciess
