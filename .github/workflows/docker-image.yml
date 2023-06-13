@@ -49,6 +49,11 @@ jobs:
           fi
           echo "BRANCH=$(echo ${GITHUB_REF#refs/heads/})" >> $GITHUB_OUTPUT
           source ~/.bash_profile && echo "STAGE=$STAGE" >>$GITHUB_OUTPUT
+   #       BRANCH=$(echo ${GITHUB_REF#refs/heads/})
+   #       echo "BRANCH=$BRANCH" >> $GITHUB_OUTPUT
+    #      [[ "$BRANCH" == "main" ]] && STAGE=prod || STAGE=dev
+    #      echo "STAGE=$STAGE" >> $GITHUB_OUTPUT
+   #       echo "BUCKET_NAME=${{ env.BUCKET_NAME_PREFIX }}.${STAGE}" >> $GITHUB_OUTPUT
 
       - name: Dump GitHub context
         env:
