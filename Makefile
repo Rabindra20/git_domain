@@ -26,7 +26,7 @@ docker-tag: ## docker tag
 	@docker tag $(SOURCE_IMAGE) $(TARGET_IMAGE_LATEST)
 
 deploy-app:
-	@kubectl apply -k $(APP_ROOT)/overlays/$(BRANCH)/kustomize.yaml
+	@kubectl apply -k $(APP_ROOT)/k8s/overlays/$(BRANCH)/kustomize.yaml
 
 help:
 	@grep -E '^[a-zA-Z0-9_-]+:.*?## .*$$' $(MAKEFILE_LIST) \
